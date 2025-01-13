@@ -1,0 +1,6 @@
+devlogs file
+
+14/01/25
+- Major Change in Project
+- Importing new Project
+- # Major Change Commit
