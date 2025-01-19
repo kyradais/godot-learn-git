@@ -1,0 +1,65 @@
+[gd_scene load_steps=10 format=3 uid="uid://cmlykx00fm682"]
+
+[ext_resource type="Script" path="res://scripts/slime.gd" id="1_2tho4"]
+[ext_resource type="Texture2D" uid="uid://dbar7rbhwlo6p" path="res://assets/sprites/slime_green.png" id="1_p6lpg"]
+[ext_resource type="PackedScene" uid="uid://bp8hx8wgj2h87" path="res://scenes/killzone.tscn" id="2_wgnjw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pthfx"]
+atlas = ExtResource("1_p6lpg")
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vcq7n"]
+atlas = ExtResource("1_p6lpg")
+region = Rect2(24, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fycc6"]
+atlas = ExtResource("1_p6lpg")
+region = Rect2(48, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ptojm"]
+atlas = ExtResource("1_p6lpg")
+region = Rect2(72, 24, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y17w4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pthfx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vcq7n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fycc6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ptojm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qhueb"]
+size = Vector2(14, 15.5)
+
+[node name="Slime" type="Node2D"]
+script = ExtResource("1_2tho4")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_y17w4")
+autoplay = "default"
+frame = 2
+frame_progress = 0.351754
+
+[node name="RayCastRight" type="RayCast2D" parent="."]
+target_position = Vector2(11, 0)
+
+[node name="RayCastLeft" type="RayCast2D" parent="."]
+target_position = Vector2(-11, 0)
+
+[node name="Killzone" parent="." instance=ExtResource("2_wgnjw")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
+position = Vector2(0, 4.25)
+shape = SubResource("RectangleShape2D_qhueb")
